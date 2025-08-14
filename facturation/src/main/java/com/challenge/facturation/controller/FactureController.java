@@ -1,8 +1,7 @@
-package com.challenge.facturation.Controller;
+package com.challenge.facturation.controller;
 
 import com.challenge.facturation.dto.FactureCreateDTO;
 import com.challenge.facturation.model.Facture;
-import com.challenge.facturation.repository.ClientRepository;
 import com.challenge.facturation.repository.FactureRepository;
 import com.challenge.facturation.service.FactureService;
 import lombok.RequiredArgsConstructor;
