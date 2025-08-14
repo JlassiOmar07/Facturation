@@ -1,4 +1,4 @@
-package exeptions;
+package com.challenge.facturation.exeptions;
 
 public class InvalidFactureExeption extends RuntimeException{
 

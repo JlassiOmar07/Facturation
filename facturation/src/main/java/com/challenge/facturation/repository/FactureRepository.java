@@ -1,6 +1,6 @@
-package repository;
+package com.challenge.facturation.repository;
 
-import model.Facture;
+import com.challenge.facturation.model.Facture;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

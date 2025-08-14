@@ -1,16 +1,15 @@
-package service;
+package com.challenge.facturation.service;
 
-import dto.FactureCreateDTO;
-import exeptions.InvalidFactureExeption;
+import com.challenge.facturation.dto.FactureCreateDTO;
+import com.challenge.facturation.exeptions.InvalidFactureExeption;
 import lombok.RequiredArgsConstructor;
-import model.Client;
-import model.Facture;
-import model.LigneFacture;
-import model.TauxTVA;
+import com.challenge.facturation.model.Client;
+import com.challenge.facturation.model.Facture;
+import com.challenge.facturation.model.LigneFacture;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import repository.ClientRepository;
-import repository.FactureRepository;
+import com.challenge.facturation.repository.ClientRepository;
+import com.challenge.facturation.repository.FactureRepository;
 
 import java.math.BigDecimal;
 import java.util.List;

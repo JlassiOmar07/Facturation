@@ -1,4 +1,4 @@
-package dto;
+package com.challenge.facturation.dto;
 
 import lombok.Data;
 

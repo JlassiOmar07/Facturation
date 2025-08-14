@@ -1,7 +1,7 @@
-package dto;
+package com.challenge.facturation.dto;
 
 import lombok.Data;
-import model.TauxTVA;
+import com.challenge.facturation.model.TauxTVA;
 
 import java.math.BigDecimal;
 

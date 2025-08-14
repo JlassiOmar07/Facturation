@@ -1,4 +1,4 @@
-package model;
+package com.challenge.facturation.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

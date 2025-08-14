@@ -1,4 +1,4 @@
-package model;
+package com.challenge.facturation.model;
 
 public enum TauxTVA {
     ZERO(0), CINQ_CINQ(5.5), DIX(10), VINGT(20);
