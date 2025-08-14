@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.math.BigDecimal;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -22,7 +24,7 @@ public class LigneFacture {
     private int quantite;
 
     @Column(nullable = false, precision = 10, scale = 2)
-    private double prixUnitaireHT;
+    private BigDecimal prixUnitaireHT;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -32,4 +34,6 @@ public class LigneFacture {
     @JoinColumn(name = "facture_id")
     @ToString.Exclude
     private Facture facture;
+
+
 }

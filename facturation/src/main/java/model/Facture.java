@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -28,12 +29,12 @@ public class Facture {
     private List<LigneFacture> lignesFacture;
 
     @Column(nullable = false, precision = 10, scale = 2)
-    private double totalHT;
+    private BigDecimal totalHT;
 
     @Column(nullable = false, precision = 10, scale = 2)
-    private double totalTTC;
+    private BigDecimal totalTTC;
 
     @Column(nullable = false, precision = 10, scale = 2)
-    private double totalTVA;
+    private BigDecimal totalTVA;
 
 }
