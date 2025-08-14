@@ -1,5 +1,6 @@
 package com.challenge.facturation.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,10 +28,12 @@ public class Client {
     @Column (nullable = false, unique = true)
     private String siret;
 
-    @Column (nullable = false)
-    private LocalDateTime dateCreation;
+    @Column
+    private LocalDateTime dateCreation = LocalDateTime.now();
+
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     @ToString.Exclude
+    @JsonIgnore
     private List<Facture> factures;
 }

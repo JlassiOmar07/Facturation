@@ -1,5 +1,7 @@
 package com.challenge.facturation.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,9 +21,8 @@ public class Facture {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(nullable = false)
-    private Client client;
+
+
 
     @Column(nullable = false)
     private LocalDate date ;
@@ -36,5 +37,10 @@ public class Facture {
 
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal totalTVA;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(nullable = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private Client client;
 
 }

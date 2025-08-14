@@ -1,5 +1,6 @@
 package com.challenge.facturation.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,6 +34,7 @@ public class LigneFacture {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "facture_id")
     @ToString.Exclude
+    @JsonIgnore
     private Facture facture;
 
 

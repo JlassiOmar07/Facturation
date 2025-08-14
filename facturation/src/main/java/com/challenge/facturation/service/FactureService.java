@@ -35,34 +35,39 @@ public class FactureService {
         facture.setClient(client);
         facture.setDate(factureCreateDTO.getDate());
 
-        BigDecimal ht = BigDecimal.ZERO;
-        BigDecimal tva = BigDecimal.ZERO;
-        List <LigneFacture> ligneFactures = factureCreateDTO.getLignesFacture()
+
+        /* 1. Créer les lignes */
+        List<LigneFacture> lignes = factureCreateDTO.getLignesFacture()
                 .stream()
-                .map(ligneFactureDTO -> {
-                    LigneFacture ligneFacture = new LigneFacture();
-                    ligneFacture.setDescription(ligneFactureDTO.getDescription());
-                    ligneFacture.setQuantite(ligneFactureDTO.getQuantite());
-                    ligneFacture.setPrixUnitaireHT(ligneFactureDTO.getPrixUnitaireHT());
-                    ligneFacture.setTauxTVA(ligneFactureDTO.getTauxTVA());
+                .map(d -> {
+                    LigneFacture l = new LigneFacture();
+                    l.setDescription(d.getDescription());
+                    l.setQuantite(d.getQuantite());
+                    l.setPrixUnitaireHT(d.getPrixUnitaireHT());
+                    l.setTauxTVA(d.getTauxTVA());
+                    l.setFacture(facture);
+                    return l;
+                })
+                .collect(Collectors.toList());
 
-                    ligneFacture.setFacture(facture);
+        /* 2. Calculer les totaux */
+        BigDecimal ht = lignes.stream()
+                .map(l -> l.getPrixUnitaireHT()
+                        .multiply(BigDecimal.valueOf(l.getQuantite())))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
 
-                    BigDecimal ligneHT = ligneFactureDTO.getPrixUnitaireHT()
-                            .multiply(BigDecimal.valueOf(ligneFactureDTO.getQuantite()));
-                    BigDecimal ligneTVA = ligneHT.multiply(BigDecimal.valueOf(ligneFactureDTO.getTauxTVA().getValeur() / 100));
+        BigDecimal tva = lignes.stream()
+                .map(l -> l.getPrixUnitaireHT()
+                        .multiply(BigDecimal.valueOf(l.getQuantite()))
+                        .multiply(BigDecimal.valueOf(l.getTauxTVA().getValeur() / 100)))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
 
-                    ht.add(ligneHT);
-
-                    return ligneFacture;
-                }).collect(Collectors.toList());
-
-        facture.setLignesFacture(ligneFactures);
+        /* 3. Affecter et sauvegarder */
+        facture.setLignesFacture(lignes);
         facture.setTotalHT(ht);
         facture.setTotalTVA(tva);
         facture.setTotalTTC(ht.add(tva));
+
         return factureRepository.save(facture);
-
-
     }
 }
