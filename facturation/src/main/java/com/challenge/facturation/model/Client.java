@@ -33,7 +33,6 @@ public class Client {
 
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
-    @ToString.Exclude
     @JsonIgnore
     private List<Facture> factures;
 }

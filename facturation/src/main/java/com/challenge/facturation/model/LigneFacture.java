@@ -33,7 +33,6 @@ public class LigneFacture {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "facture_id")
-    @ToString.Exclude
     @JsonIgnore
     private Facture facture;
 
