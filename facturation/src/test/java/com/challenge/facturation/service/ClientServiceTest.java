@@ -25,7 +25,6 @@ public class ClientServiceTest {
     @Test
     public void shouldReturnAllClients() {
         // Given
-        // Mock the behavior of clientRepository.findAll() if needed
         Client client1 = new Client();
         client1.setNom("omar");
         Client client2 = new Client();
@@ -38,7 +37,6 @@ public class ClientServiceTest {
         List <Client> result = clientService.findAllClients();
 
         // Then
-        // Verify that clientRepository.findAll() was called
         assertThat(result).hasSize(2).extracting(Client::getNom)
                 .containsExactly("omar", "imed");
     }

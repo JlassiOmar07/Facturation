@@ -26,7 +26,7 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
                 .headers(h -> h.frameOptions(f -> f.sameOrigin()))
-                // Nouvelle syntaxe httpBasic
+
                 .httpBasic(basic -> {});
 
         return http.build();
